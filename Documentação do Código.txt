@@ -1,0 +1,12 @@
+ *Este código HTML utiliza:
+
+	1 - HTML5: para a estrutura da página.
+	2 - CSS e Bootstrap: para estilização e layout responsivo.
+	3 - Ícones: via Bootstrap Icons, Remix Icons e Boxicons, para elementos gráficos.
+	4 - JavaScript: para a interação com as estrelas de avaliação.
+	5 - Google Fonts: com a fonte "Poppins" para estilizar o texto.
+	6 - Seções: estruturadas para exibir programas, planos de preços, benefícios, e avaliações de membros.
+	7 - Botões CTA e navegação**: incentivando ações do usuário.
+	
+	Em resumo, o código cria uma página de apresentação de academia, bem organizada e interativa, com design
+	responsivo e elementos visuais que remete ao universo fitness.

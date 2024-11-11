@@ -1,0 +1,799 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.scroll-animation {
+    animation: slideIn 0.5s ease-out forwards; /* Aplica a animação */
+}
+
+/* Animação 2 - outro exemplo de animação (Ex: hover em um botão) */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pulse-animation {
+    animation: pulse 3s infinite; /* Aplica a animação */
+}
+
+/* Definindo um estilo para o botão que vai ser animado */
+.button-container1 i {
+    color: #ffffff;
+    margin-top: 20px;
+    margin-left: 10px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    font-size: 2rem;
+}
+
+.button-container1 i:hover {
+    background-color: #ffffff;
+    color: #000000;
+    cursor: pointer;
+}
+
+:root {
+    --bg-color: #111317;
+    --text-color: #ffffff;
+    --main-color: #ffffff;
+}
+
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    min-height: 100vh;
+    background: #111317;
+    color: var(--text-color);
+    min-width: 100vh;
+}
+
+
+
+/* Navbar fixa no topo */
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.8); /* Fundo semi-transparente para visibilidade */
+    padding: 28px 12%;
+    transition: all 0.5s ease;
+    
+}
+
+body {
+    padding-top: 80px; /* Ajuste este valor de acordo com a altura do header */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    
+}
+
+.navbar {
+    display: flex;
+    gap: 20px;
+
+    
+}
+
+.navbar {
+    display: flex;
+    gap: 20px;
+}
+
+.navbar a {
+    color: var(--text-color, #ffffff); /* Cor de texto padrão, com fallback para branco */
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 5px 0;
+    position: relative; /* Necessário para posicionar a barrinha */
+    transition: color 0.5s ease; /* Transição suave para a cor */
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    color: #f39c12; /* Cor laranja fixa quando o mouse passar sobre o link */
+}
+
+/* Adiciona a linha abaixo do link ao passar o mouse */
+.navbar a:after {
+    content: ""; /* Cria o conteúdo da linha */
+    position: absolute; /* Posiciona a linha em relação ao link */
+    left: 0; /* Inicia à esquerda do link */
+    bottom: 0; /* Fica no final do link, como uma linha inferior */
+    width: 100%; /* A linha vai ter a largura total do link */
+    height: 3px; /* Espessura da linha */
+    background-color: #f9ac54; /* Cor laranja da linha */
+    transform: scaleX(0); /* Inicialmente, a linha estará oculta */
+    transform-origin: bottom right; /* Faz a linha aparecer da direita para a esquerda */
+    transition: transform 0.3s ease; /* Animação suave */
+}
+
+/* Quando o mouse passar por cima do link, a linha aparecerá */
+.navbar a:hover:after {
+    transform: scaleX(1); /* A linha se expande para 100% da largura */
+    transform-origin: bottom left; /* Linha se expande da esquerda para a direita */
+}
+
+.navbar a.active {
+    color: #f9ac54; /* Cor laranja quando o link estiver ativo */
+}
+/* Espaço no conteúdo para compensar altura da Navbar */
+.content {
+    padding-top: 80px; /* Ajuste este valor para a altura da Navbar */
+}
+
+/* Ícone do menu em telas pequenas */
+#menu-icon {
+    font-size: 35px;
+    color: var(--text-color);
+    cursor: pointer;
+    z-index: 1001;
+    display: none;
+}
+
+/* Responsividade */
+@media (max-width: 1280px) {
+    header {
+        padding: 14px 2%;
+    }
+}
+
+@media (max-width: 1090px) {
+    #menu-icon {
+        display: block;
+    }
+    .navbar {
+        position: absolute;
+        top: 100%;
+        right: -100%;
+        width: 270px;
+        height: 29vh;
+        background: var(--main-color);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        border-radius: 10px;
+        transition: all 0.5s ease;
+    }
+    .navbar a {
+        display: block;
+        margin: 12px 0;
+        padding: 0px 25px;
+    }
+    .navbar.open {
+        right: 2%;
+    }
+}
+
+
+.text-section {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    padding: 0 5%;
+    gap: 20px;
+    position: relative;
+    overflow: hidden; /* Garante que nada escape dos limites da seção */
+}
+
+.image-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-img {
+    width: 100%;
+    max-width: 400px; /* Ajuste conforme necessário */
+    border-radius: 10px; /* Borda arredondada, opcional */
+    position: relative;
+    z-index: 1;
+}
+
+.image-wrapper::before {
+    content: "";
+    position: absolute;
+    width: 150%; /* Ajuste para controlar o tamanho do efeito */
+    height: 150%;
+    background: radial-gradient(circle, rgba(249, 172, 84, 0.5), transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+    filter: blur(50px); /* Desfoca para suavizar o efeito */
+    transition: transform 0.3s ease;
+}
+
+.image-wrapper:hover::before {
+    transform: scale(1.2); /* Aumenta o efeito ao passar o mouse */
+}
+
+.text-content {
+    max-width: 50%;
+    color: #ffffff;
+    z-index: 1;
+}
+
+.orange-text {
+    color: #f9ac54;
+    font-weight: bold;
+}
+
+.text-content h1 {
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text-color);
+}
+
+.outline-text {
+    -webkit-text-stroke: 2px var(--text-color);
+    color: transparent;
+    font-weight: bold;
+}
+
+.description {
+    font-size: 1rem;
+    color: #ffffff;
+    margin-top: 20px;
+    line-height: 1.6;
+}
+
+
+.text-cards i {
+    color: #ffffff;
+    margin-top: 20px;
+    position: relative;
+    right: -60%;
+    border-radius: 5px;
+    transition: all 0.3s ease; /* Para suavizar a transição */
+}
+
+/* Estilo para quando o mouse passar por cima */
+.text-cards i:hover {
+    background-color: transparent; /* Cor de fundo do botão quando passar o mouse */
+    color: #f39c12; /* Cor do texto quando passar o mouse */
+    cursor: pointer; /* Cursor de clique */
+}
+
+.cta-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color:#f9ac54;
+    color: var(--button-text-color);
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 5px;
+    text-align: center;
+    color: #fff;
+}
+
+.cta-button:hover {
+    background-color: #f39c12;
+}
+
+/* Imagem no lado direito */
+.header-img {
+    width: 80%; /* A imagem ocupa até 40% da largura */
+    height: auto;
+    object-fit: cover;
+    margin-left: 300px;
+    display:block;
+}
+
+.background-text {
+    position: absolute;
+    top: 90%;
+    left: 18%;
+    transform: translate(-50%, -50%);
+    font-size: 10rem;
+    color: rgba(255, 255, 255, 0.1); /* Cor clara e opaca para ficar atrás */
+    font-weight: bold;
+    z-index: -1;
+    text-transform: uppercase;
+}
+
+.text-cards{
+    padding: 80px;
+    font-size: 1rem;
+    margin-top: 20px;
+    color: var(--text-color);
+}
+
+    
+.card-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 20px;
+}
+
+.card {
+    width: 100%;
+    max-width: 300px;
+    background-color: #1f2125;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    height: 250px;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    border-color: #f9ac54;
+}
+
+/* Estilo dos ícones */
+.card-icon {
+    font-size: 50px; /* Tamanho do ícone */
+    color: #f9ac54; /* Cor do ícone */
+    margin-top: 20px;
+}
+
+/* Conteúdo do card */
+.card-content {
+    padding: 15px;
+}
+
+.card h3 {
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.card p {
+    font-size: 0.9rem;
+    color: #ffffff;
+    margin: 0;
+}
+
+.card-nav {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+    text-align: left;
+    
+}
+
+.card-nav li {
+    margin: 5px 0;
+}
+
+.card-nav a {
+    color: #f9ac54;
+    text-decoration: none;
+    font-weight: bold;
+    
+}
+
+.card-nav a:hover {
+    text-decoration: underline;
+}
+
+.text-section2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    height: 100vh;
+    background-color: #1c1c1c; /* Fundo escuro para destacar as imagens e o texto */
+    gap: 40px;
+}
+
+/* Conteúdo do texto */
+.text-content2 {
+    max-width: 40%;
+    color: #ffffff;
+    text-align: left;
+    z-index: 2;
+}
+
+.orange-text2 {
+    color: #f9ac54;
+    font-weight: bold;
+}
+
+.text-content2 h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #ffffff;
+}
+
+.description2 {
+    font-size: 1rem;
+    color: #ffffff;
+    margin-top: 20px;
+    line-height: 1.6;
+}
+
+.cta-button2 {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #f9ac54;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.cta-button2:hover {
+    background-color: #f39c12;
+}
+
+/* Estilos para o wrapper de imagens */
+.image-wrapper2 {
+    position: relative;
+    width: 80%;
+    max-width: 700px;
+    margin-right: auto; /* Controla o tamanho máximo das imagens */
+    display: flex;
+    justify-content: center;
+}
+
+/* Imagem principal */
+.main-img2 {
+    width: 100%;
+    border-radius: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Imagem sobreposta */
+.overlay-img2 {
+    position: absolute;
+    bottom: 10px; /* Ajuste conforme necessário */
+    left: -170px; /* Ajuste conforme necessário */
+    width: 50%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    transform: translateY(20%);
+}
+
+.text-section3 {
+    font-size: 1rem;
+    color: #ffffff;
+    margin-top: 20px;
+    line-height: 1.6;
+    text-align: center;
+    
+}
+
+.description3{
+    font-size: 1rem;
+    color: #ffffff;
+    margin-top: 20px;
+    line-height: 1.6;
+}
+
+
+.main-section1 {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #1c1c1c;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 50px;
+}
+
+/* Imagem principal */
+.image-wrapper3 {
+    width: 100%;
+    position: relative;
+    height: 100%;
+    display: flex;
+}
+
+.main-image1 {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Cards de informações */
+.info-cards {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    padding: 0 20px;
+}
+
+/* Cada card */
+.cards {
+    background-color: #1f2125;
+    color: #ffffff;
+    padding: 10px;
+    width: 25%;
+    text-align: center;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    height: 40%;
+}
+
+.cards:hover {
+    transform: scale(1.05);
+    border-color: #f39c12;
+}
+
+/* Títulos dos cards */
+.cards h3 {
+    font-size: 18px;
+    margin: 10px 0 5px;
+}
+
+/* Parágrafos dos cards */
+.cards p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.text-section4 {
+    font-size: 1rem;
+    color: #ffffff;
+    margin-top: 50px;
+    line-height: 1.6;
+    text-align: center;
+    
+}
+
+.description4{
+    font-size: 1rem;
+    color: #ffffff;
+    margin-top: 20px;
+    line-height: 1.6;
+}
+.text-cards{
+    padding: 80px;
+    font-size: 1rem;
+    margin-top: 20px;
+    color: var(--text-color);
+}
+
+    
+.card-section3 {  /* começo Estrutura 3 Cards */
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 20px;
+}
+
+.cardss {   /* Estrutura 3 Cards */
+    width: 100%;
+    color: #ffffff;
+    max-width: 300px;
+    background-color: #1f2125;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: left;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    height: 450px;
+}
+
+.cardss:hover {
+    transform: scale(1.05);
+    border-color: #f9ac54; /* Borda laranja ao passar o mouse */
+}
+
+/* Conteúdo do card */
+.card-content1 {
+    padding: 20px;
+}
+
+.cardss h3 {
+    font-size: 1.4rem;
+    color: #ffffff;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.cardss h2 {
+    font-size: 2rem;
+    color: #ffffff;
+    text-align: center;
+    margin: 10px 0;
+    border-bottom: 2px solid #ffffff; /* Linha separadora */
+    padding-bottom: 10px;
+}
+
+.cardss p {
+    font-size: 0.9rem;
+    color: #b0b3b8;
+    margin: 15px 0;
+    padding-left: 10px;
+}
+
+/* Estilo do botão "Join Now" */
+.cta-button3 {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    background-color: transparent;
+    color: #f9ac54;
+    font-size: 1rem;
+    font-weight: 600;
+    border: 2px solid #f9ac54; /* Borda laranja */
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cta-button3:hover {
+    background-color: #f9ac54;
+    color: #1f2125;
+}
+
+.text-section5 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 5%;
+    background-color: #1c1c1c;
+    gap: 20px;
+    color: #ffffff;
+}
+
+.text-section5 h1 {
+    font-size: 2rem;
+    color: #ffffff;
+    margin-top: 20px;
+}
+
+.description5 {
+    font-size: 1rem;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+.rating {
+    display: flex;
+    gap: 5px;
+    color: #f9ac54;
+    font-size: 2rem;
+}
+
+.rating i {
+    cursor: pointer;
+}
+
+.rating i:hover,
+.rating i.active {
+    color: #f39c12;
+}
+
+.image-wrapper4 {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-info {
+    text-align: left;
+    color: #ffffff;
+}
+
+.profile-info h1 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.profile-info p {
+    font-size: 1rem;
+    margin: 0;
+    color: #999;
+}
+
+.profile-info i {
+    color: #ffffff;
+    margin: 0 5px;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.profile-info i:hover {
+    color: #f9ac54;
+}
+
+
+.footer {
+    background-color: #1f2125;
+    color: #ffffff;
+    padding: 2rem 0;
+}
+
+.footer .row {
+    gap: 2rem; /* Controla o espaçamento entre as colunas */
+}
+
+.footer h5 {
+    margin-bottom: 1rem; /* Reduz o espaço */
+    font-weight: bold;
+}
+
+.footer p {
+    line-height: 1.6;
+    color: #b0b3b8;
+    text-align: center;
+}
+
+.footer a {
+    text-decoration: none;
+    color: #b0b3b8;
+    font-size: 0.9rem;
+    transition: color 0.3s, text-shadow 0.3s; /* Transição suave para o efeito */
+}
+
+.footer a:hover {
+    color: #f9ac54;
+    text-shadow: 0 0 5px #f9ac54, 0 0 10px #f9ac54; /* Efeito de brilho */
+}
+
+.footer .social-icons a {
+    font-size: 1.5rem;
+    color: #f9ac54;
+    margin-right: 1.5rem;
+}
+
+.logo-img1 {
+    display: block;
+    max-width: 100px;
+    height: auto;
+    margin: 0 auto 1rem;
+}
+
